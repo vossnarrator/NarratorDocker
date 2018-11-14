@@ -9,4 +9,4 @@ RUN apt-get install -y curl \
 
 RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt
 
-RUN apk update && apk add jq
+RUN apt-get install -y jq
