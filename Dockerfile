@@ -12,5 +12,6 @@ RUN apt-get install -y curl \
 
 RUN apt-get update && apt-get install -y mysql-client && apt-get install -y jq 
 RUN apt-get install -y git
+RUN apt-get install -y openssh-client sshpass
 RUN npm install
 RUN rm -rf /var/lib/apt
