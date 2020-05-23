@@ -10,7 +10,7 @@ RUN apt-get install -y curl \
   && apt-get install -y nodejs \
   && curl -L https://www.npmjs.com/install.sh | sh
 
-RUN apt-get update && apt-get install -y mysql-client && apt-get install -y jq 
+RUN apt-get update && apt-get install -y mysql-client && apt-get install -y jq
 RUN apt-get install -y git
 RUN apt-get install -y openssh-client sshpass
 RUN npm install
