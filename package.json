@@ -6,42 +6,46 @@
     "url": "https://github.com/heroku-examples/node-ws-test.git"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "mocha": "^7.1.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "mocha": "^7.2.0",
     "mock-require": "^3.0.2",
-    "sinon": "^7.2.5"
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.6",
+    "sinon": "^7.5.0"
   },
   "dependencies": {
-    "chai": "^4.2.0",
     "chalk": "^2.4.2",
-    "discord.js": "^11.4.0",
+    "discord.js": "^12.5.1",
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
+    "fastest-levenshtein": "^1.0.12",
     "firebase": "^3.9.0",
     "firebase-admin": "^4.2.1",
-    "glob": "^7.1.3",
+    "glob": "^7.1.6",
     "js-md5": "^0.7.3",
-    "jsonschema": "^1.2.4",
-    "lodash": "^4.17.15",
-    "moment": "^2.24.0",
-    "mysql": "^2.15.0",
-    "request": "^2.88.0",
+    "jsonschema": "^1.4.0",
+    "lodash": "^4.17.21",
+    "mysql": "^2.18.1",
+    "request": "^2.88.2",
     "string-similarity": "^1.2.0",
-    "ws": "^7.3.0"
+    "ws": "^7.5.3"
   },
   "engines": {
     "node": "0.10.x"
   },
   "scripts": {
-    "dev": "nodemon --watch 'web/*' --ignore 'web/test/*' web/runner.js",
-    "cleanMigrate": "flyway clean -user=$DB_USERNAME -password=$DB_PASSWORD -url=jdbc:mariadb://$DB_HOSTNAME/$DB_NAME -locations=filesystem:src; flyway migrate -user=$DB_USERNAME -password=$DB_PASSWORD -url=jdbc:mariadb://$DB_HOSTNAME/$DB_NAME -locations=filesystem:src",
+    "dev": "npx nodemon --watch 'web/*' --ignore 'web/test/*' web/runner.js",
+    "cleanMigrate": "flyway clean -user=$DB_USERNAME -password=$DB_PASSWORD -url=jdbc:mariadb://$DB_HOSTNAME/$DB_NAME -locations=filesystem:src; npm run migrate",
+    "cleanMigrateWindows": "flyway clean -user=%DB_USERNAME% -password=%DB_PASSWORD% -url=jdbc:mariadb://%DB_HOSTNAME%/%DB_NAME% -locations=filesystem:src && flyway migrate -user=%DB_USERNAME% -password=%DB_PASSWORD% -url=jdbc:mariadb://%DB_HOSTNAME%/%DB_NAME% -locations=filesystem:src",
     "lint": "eslint --ext .js ./web",
     "lintdev": "eslint --ext .js ./web --fix",
-    "mocha": "mocha web/test/**/** --exit --timeout 30000",
+    "migrate": "flyway migrate -user=$DB_USERNAME -password=$DB_PASSWORD -url=jdbc:mariadb://$DB_HOSTNAME/$DB_NAME -locations=filesystem:src",
+    "mocha": "sh scripts/compile.sh && mocha web/test/**/**/** --exit --timeout 30000",
     "start": "node server.js"
   }
 }
